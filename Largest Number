@@ -1,0 +1,26 @@
+Input: nums = [10,2]
+Output: "210"
+
+Input: nums = [3,30,34,5,9]
+Output: "9534330"
+
+CODE:
+
+static bool mycomp(string a,string b){
+        string t1=a+b;
+        string t2=b+a;
+        return t1>t2;
+    }
+    string largestNumber(vector<int>& nums) {
+      vector<string>s;
+        for(auto i:nums){
+            s.push_back(to_string(i));
+        }
+        sort(s.begin(),s.end(),mycomp);
+        if(s[0]=="0") return "0";
+        string ans="";
+        for(auto i:s){
+            ans=ans+i;
+        }
+        return ans;
+    }
