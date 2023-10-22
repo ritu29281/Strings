@@ -1,0 +1,28 @@
+Input: S = "aab"
+Output: 1
+Explanation: If we change one instance 
+of 'a' to any character from 'c' to 'z', 
+we get all distinct substrings.
+
+CODE:
+
+int minChange(string S) { 
+      set<char>s;
+      for(int i=0;i<S.size();i++){
+         s.insert(S[i]);
+      }
+return (S.size()-s.size()); 
+
+!--------------OR---------------!
+
+int minChange(string S) { 
+  int c=0;
+     sort(S.begin(),S.end());
+     for(int i=0;i<S.size()-1;i++){
+         if(S[i]==S[i+1]){
+             c++;
+         }
+     }
+     return c;
+    
+} 
