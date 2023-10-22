@@ -1,0 +1,53 @@
+Given a string S consisting of only lowercase characters. Find the lexicographically smallest string after removing exactly k characters from the string. But you have to correct the value of k, i.e., if the length of the string is a power of 2, reduce k by half, else multiply k by 2. You can remove any k character.
+NOTE: If it is not possible to remove k (the value of k after correction) characters or if the resulting string is empty return -1.
+
+Example 1:
+
+Input: S = "fooland", k = 2
+Output: "and" 
+Explanation: As the size of the string = 7
+which is not a power of 2, hence k = 4.
+After removing 4 characters from the given 
+string, the lexicographically smallest
+string is "and".
+
+CODE:
+
+class Solution {
+  public:
+  bool isPower(int n){
+      while(n!=1){
+          if(n%2 !=0){
+              return 0;
+          }
+          n=n/2;
+      }
+      return 1;
+  }
+    string lexicographicallySmallest(string S, int k) {
+      int n=S.size();
+      isPower(n)?k=k/2:k=k*2;
+      if(k>=n) return "-1";
+      stack<char>st;
+      for(int i=0;i<n;i++){
+          while(!st.empty() && k>0 && st.top()>S[i]){
+              st.pop();
+              k--;
+          }
+          st.push(S[i]);
+      }
+      //Agar k abhi bhi bacha ho to pop kro stack se;
+       while(k>0 && !st.empty()){
+            st.pop();
+            k--;
+      }
+      string ans="";
+      while( !st.empty()){
+          ans=ans+st.top();
+          st.pop();
+      }
+      reverse(ans.begin(),ans.end());
+      return ans;
+     
+    }
+};
