@@ -1,0 +1,36 @@
+Input: s = "daabcbaabcbc", part = "abc"
+Output: "dab"
+Explanation: The following operations are done:
+- s = "daabcbaabcbc", remove "abc" starting at index 2, so s = "dabaabcbc".
+- s = "dabaabcbc", remove "abc" starting at index 4, so s = "dababc".
+- s = "dababc", remove "abc" starting at index 3, so s = "dab".
+Now s has no occurrences of "abc".
+
+CODE:
+
+string removeOccurrences(string s, string part) {
+     int ans=s.find(part);
+     while(ans!=string::npos){
+         s.erase(ans,part.length());
+         ans=s.find(part);
+     } 
+     return s; 
+    }
+!---------------OR-----------------!
+void remove(string &s, string part){
+        int found= s.find(part);
+        if(found!=string::npos){
+            string left=s.substr(0,found);
+            string right=s.substr(found+part.size(),s.size());
+            s=left+right;
+            remove(s,part);
+        }
+        else{
+            return;
+        }
+        
+    }
+    string removeOccurrences(string s, string part) {
+     remove(s,part);
+        return s;
+    }
