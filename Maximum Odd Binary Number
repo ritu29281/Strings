@@ -1,0 +1,21 @@
+Input: s = "0101"
+Output: "1001"
+Explanation: One of the '1's must be in the last position. The maximum number that can be made with the remaining digits is "100". So the answer is "1001".
+
+
+string maximumOddBinaryNumber(string s) {
+       int n=s.length();
+        string ans=string(n,'0');
+        int i=0;
+        for(char &ch:s){
+            if(ch=='1'){
+                if(ans[n-1]=='1'){
+                    ans[i]='1';
+                    i++;
+                }else{
+                    ans[n-1]='1';
+                }
+            }
+        }
+        return ans;
+    }
