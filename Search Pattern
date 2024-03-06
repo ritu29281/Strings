@@ -1,0 +1,27 @@
+text = "geeksforgeeks"
+pattern = "geek"
+Output: 
+[1, 9]
+Explanation: 
+The string "geek" occurs twice in text, one starts are index 1 and the other at index 9.
+
+
+
+ vector <int> search(string pattern, string text)
+        {
+           vector<int>ans;
+           int n=pattern.length();
+           int i=0;
+           while(i<text.length()-n+1){
+               if(text[i]==pattern[0]){
+                   string s= text.substr(i,n);
+                   if(pattern==s){
+                   ans.push_back(i+1);
+                 }
+               }
+          
+            
+            i++;
+           }
+           return ans;
+        }
