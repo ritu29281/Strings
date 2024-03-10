@@ -1,0 +1,19 @@
+	string removeDuplicates(string str) {
+	    map<char,int>mp;
+	    map<char,bool>v;
+	    for(auto it:str){
+	        mp[it]++;
+	    }
+	    string ans="";
+	   
+	    int i=0;
+	  
+	   for(int j=0;j<str.size();j++){
+	       if(mp.find(str[i])!=mp.end() && !v[str[i]]){
+	           v[str[i]]=true;
+	           ans+=str[i];
+	       }
+	       i++;
+	   }
+	    return ans;
+	}
